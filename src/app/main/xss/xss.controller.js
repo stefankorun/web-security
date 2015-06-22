@@ -10,6 +10,7 @@
     var codeHolder = $('.unfiltered section');
     MongoService.readData('xssText').success(function (res) {
       $scope.xssText = res.data;
+      toastr.info('xssText recieved from server');
     });
 
 
@@ -20,11 +21,13 @@
     $scope.saveXssText = function (string) {
       MongoService.saveData('xssText', string)
         .success(function () {
-          toastr.info('Saved');
+          toastr.success('Saved');
         })
         .error(function () {
           toastr.error('Error');
         });
-    }
+    };
+
+
   }
 })();
