@@ -1,4 +1,4 @@
-/* global malarkey:false, toastr:false, moment:false */
+/* global toastr:false, moment:false */
 (function() {
   'use strict';
 
@@ -6,5 +6,4 @@
     .module('webSecurity')
     .constant('toastr', toastr)
     .constant('moment', moment);
-
 })();

@@ -1,3 +1,35 @@
-<div layout="vertical" layout-fill>
-  korun izbrisa sve
+<div layout="column">
+  <user-login></user-login>
+
+
+  <!-- FB SDK -->
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '1606746056261634',
+        xfbml: false,
+        version: 'v2.3'
+      });
+      $(document).trigger('FBload');
+    };
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <!-- GOOGLE SDK -->
+  <script src="https://apis.google.com/js/platform.js?onload=gapiAsyncInit" async defer></script>
+  <script>
+    window.gapiAsyncInit = function () {
+      gapi.load('auth2', function() {
+        $(document).trigger('GAPIload');
+      });
+    };
+  </script>
 </div>
