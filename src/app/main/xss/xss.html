@@ -3,6 +3,9 @@
     <label>XSS Test</label>
     <textarea ng-model="xssText"></textarea>
   </md-input-container>
+  <md-button class="md-fab" aria-label="Save to Cloud" ng-click="saveXssText(xssText)">
+    <i class="fa fa-cloud-upload"></i>
+  </md-button>
   <div class="output">
     <div class="result filtered">
       <h2>Filtered result</h2>
