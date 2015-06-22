@@ -1,0 +1,19 @@
+<div class="xssView">
+  <md-input-container>
+    <label>XSS Test</label>
+    <textarea ng-model="xssText"></textarea>
+  </md-input-container>
+  <div class="output">
+    <div class="result filtered">
+      <h2>Filtered result</h2>
+      <section>
+        {{ xssText }}
+      </section>
+    </div>
+    <div class="result unfiltered">
+      <h2>Unfiltered result</h2>
+      <section>
+      </section>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,12 @@
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main'
+      })
+      .state('xss', {
+        url: '/xss',
+        templateUrl: 'app/main/xss/xss.html',
+        controller: 'XssViewController',
+        controllerAs: 'XssView'
       });
 
     $urlRouterProvider.otherwise('/');
