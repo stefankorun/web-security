@@ -10,7 +10,9 @@
     var codeHolder = $('.unfiltered section');
     MongoService.readData('xssText').success(function (res) {
       $scope.xssText = res.data;
-      toastr.info('xssText recieved from server');
+    });
+    MongoService.readData('csrfText').success(function (res) {
+      $scope.csrfText = res.data;
     });
 
 
@@ -18,16 +20,15 @@
       codeHolder.html(text);
     });
 
-    $scope.saveXssText = function (string) {
-      MongoService.saveData('xssText', string)
+    $scope.saveText = function (type, string) {
+      MongoService.saveData(type, string)
         .success(function () {
-          toastr.success('Saved');
+          toastr.success('Saved ' + type + ' text');
         })
         .error(function () {
           toastr.error('Error');
         });
     };
-
 
   }
 })();

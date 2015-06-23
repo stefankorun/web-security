@@ -6,16 +6,16 @@
     .directive('userLogin', UserLogin);
 
   /** @ngInject */
-  function UserLogin($document, $log, AuthService) {
+  function UserLogin($document, $log, UserService) {
     function link($scope) {
-      AuthService.fb.checkLogin();
-      AuthService.gapi.checkLogin();
+      UserService.fb.checkLogin();
+      UserService.gapi.checkLogin();
 
       $scope.loginFB = function () {
-        AuthService.fb.openLogin();
+        UserService.fb.openLogin();
       };
       $scope.loginGoogle = function () {
-        AuthService.gapi.openLogin();
+        UserService.gapi.openLogin();
       };
     }
 

@@ -10,22 +10,28 @@
     }
   }
 
-  .output {
-    .result {
-      section {
-        padding: 20px 10px;
-      }
-
-      &.filtered {
+  .xssWrapper {
+    .output {
+      .result {
         section {
-          background: #E0FFB1;
+          padding: 20px 10px;
+          box-shadow: 0px 2px 3px #E0DDDD;
         }
-      }
-      &.unfiltered {
-        section {
-          background: #FEB8B8;
+
+        &.filtered {
+          section {
+            background: #E0FFB1;
+          }
+        }
+        &.unfiltered {
+          section {
+            background: #FEB8B8;
+          }
         }
       }
     }
+  }
+  .csrfWrapper {
+    margin-top: 50px;
   }
 }

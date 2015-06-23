@@ -1,24 +1,40 @@
 <div class="xssView">
-  <div class="input">
-    <md-input-container>
-      <label>XSS Test</label>
-      <textarea ng-model="xssText"></textarea>
-    </md-input-container>
-    <md-button class="md-fab md-primary" aria-label="Save to Cloud" ng-click="saveXssText(xssText)">
-      <i class="fa fa-cloud-upload"></i>
-    </md-button>
+  <div class="xssWrapper">
+    <h2>XSS Test</h2>
+    <div class="input">
+      <md-input-container>
+        <label>XSS Text</label>
+        <textarea ng-model="xssText"></textarea>
+      </md-input-container>
+      <md-button class="md-fab md-primary" aria-label="Save to Cloud" ng-click="saveText('xssText', xssText)">
+        <i class="fa fa-cloud-upload"></i>
+      </md-button>
+    </div>
+    <div class="output">
+      <div class="result filtered">
+        <h3>Filtered result</h3>
+        <section>
+          {{ xssText }}
+        </section>
+      </div>
+      <div class="result unfiltered">
+        <h3>Unfiltered result</h3>
+        <section>
+        </section>
+      </div>
+    </div>
   </div>
-  <div class="output">
-    <div class="result filtered">
-      <h2>Filtered result</h2>
-      <section>
-        {{ xssText }}
-      </section>
+  <div class="csrfWrapper">
+    <h2>CSRF Test</h2>
+    <div class="input">
+      <md-input-container>
+        <label>CSRF Text</label>
+        <textarea ng-model="csrfText"></textarea>
+      </md-input-container>
+      <md-button class="md-fab md-primary" aria-label="Save to Cloud" ng-click="saveText('csrfText', csrfText)">
+        <i class="fa fa-cloud-upload"></i>
+      </md-button>
     </div>
-    <div class="result unfiltered">
-      <h2>Unfiltered result</h2>
-      <section>
-      </section>
-    </div>
+    <img src="{{ csrfText }}"/>
   </div>
 </div>
