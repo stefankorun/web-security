@@ -6,8 +6,8 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log) {
-
+  function runBlock($log, $state) {
+    //$state.go('main.xss');
     $log.debug('runBlock end');
   }
 

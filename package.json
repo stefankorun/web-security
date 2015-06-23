@@ -1,7 +1,9 @@
 {
   "name": "webSecurity",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.13.0"
+  },
   "scripts": {
     "test": "gulp test"
   },

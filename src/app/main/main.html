@@ -1,4 +1,25 @@
-<div layout="column">
+<div layout="column" class="mainWrapper">
+  <md-toolbar>
+    <h2 class="md-toolbar-tools">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-click="main.navMenuOpen = !main.navMenuOpen">
+          <i class="fa fa-tasks"></i>
+        </md-button>
+        <h2>
+          <span>MWS - FINKI</span>
+        </h2>
+      </div>
+    </h2>
+    <div layout="row" class="navigationMenu" ng-show="main.navMenuOpen">
+      <a flex ui-sref="main.xss">
+        XSS Vulnerability
+      </a>
+      <a flex ui-sref="main.login">
+        Login methods
+      </a>
+    </div>
+  </md-toolbar>
+
   <div ui-view></div>
 
 
@@ -27,7 +48,7 @@
   <script src="https://apis.google.com/js/platform.js?onload=gapiAsyncInit" async defer></script>
   <script>
     window.gapiAsyncInit = function () {
-      gapi.load('auth2', function() {
+      gapi.load('auth2', function () {
         $(document).trigger('GAPIload');
       });
     };

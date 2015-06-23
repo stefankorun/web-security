@@ -6,6 +6,7 @@ var conf = require('./conf');
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
+var express = require('express');
 
 var util = require('util');
 
@@ -15,7 +16,7 @@ function browserSyncInit(baseDir, browser) {
   browser = browser === undefined ? 'default' : browser;
 
   var routes = null;
-  if(baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
+  if (baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
     routes = {
       '/bower_components': 'bower_components'
     };
@@ -42,12 +43,27 @@ function browserSyncInit(baseDir, browser) {
   });
 }
 
+function expressInit() {
+  var server = express();
+
+  server.use('/test', express.static('build.js'));
+  server = server.listen(4000, function () {
+
+    var host = server.address().address;
+    var port = server.address().port;
+
+    console.log('Example app listening at http://%s:%s', host, port);
+
+  });
+}
+
 browserSync.use(browserSyncSpa({
   selector: '[ng-app]'// Only needed for angular apps
 }));
 
 gulp.task('serve', ['watch'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
+  //expressInit();
 });
 
 gulp.task('serve:dist', ['build'], function () {

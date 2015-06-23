@@ -1,0 +1,27 @@
+.mainWrapper {
+
+  md-toolbar {
+
+    .navigationMenu {
+      text-align: center;
+      font-size: 0.8em;
+      height: 40px;
+      transition: 0.3s linear all;
+
+      a {
+        padding: 10px;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+
+      // animations
+      &.ng-hide {
+        opacity: 0;
+        height: 0;
+      }
+
+    }
+  }
+}
