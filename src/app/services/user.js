@@ -13,7 +13,7 @@
     });
 
   /** @ngInject */
-  function UserService($document, $q, $log) {
+  function UserService($document, $q) {
     var FBAuth;
     var FBDeferred = $q.defer();
     var GAPIAuth;
@@ -38,23 +38,42 @@
         });
       },
       checkLogin: function () {
+        var deferred = $q.defer();
         FBDeferred.promise.then(function () {
           FBAuth.getLoginStatus(function (response) {
-            $log.log(response);
+            deferred.resolve(response.status === 'connected');
           });
         });
+        return deferred.promise;
+      },
+      getProfile: function () {
+        var deferred = $q.defer();
+        FB.api('/me', function(response) {
+          deferred.resolve(response);
+        });
+        return deferred.promise;
       }
     };
     this.gapi = {
       openLogin: function () {
         GAPIDeferred.promise.then(function () {
-          GAPIAuth.signIn();
+          GAPIAuth.signIn().then(function() {
+            console.log(GAPIAuth.currentUser.get().getId());
+          });
         });
       },
       checkLogin: function () {
+        var deferred = $q.defer();
         GAPIDeferred.promise.then(function () {
-          $log.log(GAPIAuth.isSignedIn.get());
+          deferred.resolve(GAPIAuth.isSignedIn.get());
         });
+        return deferred.promise;
+      },
+      getProfile: function () {
+        var deferred = $q.defer();
+        var profile = GAPIAuth.currentUser.get().getBasicProfile();
+        deferred.resolve(profile.getName());
+        return deferred.promise;
       }
     };
   }

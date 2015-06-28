@@ -22,9 +22,11 @@
         controller: 'XssViewController',
         controllerAs: 'XssView'
       })
-      .state('main.login', {
-        url: '/login',
-        template: '<user-login>'
+      .state('main.profile', {
+        url: '/profile',
+        templateUrl: 'app/main/profile/profile.html',
+        controller: 'ProfileViewController',
+        controllerAs: 'ProfileView'
       });
 
     //$urlRouterProvider.otherwise('/');

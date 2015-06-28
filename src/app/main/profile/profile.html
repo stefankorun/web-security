@@ -1,0 +1,29 @@
+<div class="profileView">
+  <div class="userLoginWrapper">
+    <user-login>
+  </div>
+  <div class="userProfile">
+    <md-button class="md-fab md-primary" aria-label="Save to Cloud" ng-click="ProfileView.reloadProfiles()">
+      <i class="fa fa-cloud-upload"></i>
+    </md-button>
+    <div class="normal">
+      <h4>Normal Profile</h4>
+    </div>
+    <div class="facebook">
+      <h4>Facebook Profile
+        <span ng-show="ProfileView.profiles.facebook.logged"><i class="fa fa-check"></i>logged in</span>
+      </h4>
+      <div class="profileData">
+        {{ ProfileView.profiles.facebook.profile }}
+      </div>
+    </div>
+    <div class="google">
+      <h4>Google Profile
+        <span ng-show="ProfileView.profiles.gapi.logged"><i class="fa fa-check"></i>logged in</span>
+      </h4>
+      <div class="profileData">
+        {{ ProfileView.profiles.gapi.profile }}
+      </div>
+    </div>
+  </div>
+</div>

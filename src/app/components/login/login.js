@@ -6,7 +6,7 @@
     .directive('userLogin', UserLogin);
 
   /** @ngInject */
-  function UserLogin($document, $log, UserService) {
+  function UserLogin(UserService) {
     function link($scope) {
       UserService.fb.checkLogin();
       UserService.gapi.checkLogin();
