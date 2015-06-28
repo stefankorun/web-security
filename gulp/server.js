@@ -6,7 +6,9 @@ var conf = require('./conf');
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
+
 var express = require('express');
+var serveStatic = require('serve-static');
 
 var util = require('util');
 
@@ -44,16 +46,21 @@ function browserSyncInit(baseDir, browser) {
 }
 
 function expressInit() {
-  var server = express();
+  var https = require('https');
+  var fs = require('fs');
+  var app = express();
 
-  server.use('/test', express.static('build.js'));
-  server = server.listen(4000, function () {
+  var privateKey = fs.readFileSync('./gulp/sslcert/key.pem', 'utf8');
+  var certificate = fs.readFileSync('./gulp/sslcert/cert.pem', 'utf8');
+  var credentials = {key: privateKey, cert: certificate};
 
+  app.use(serveStatic('./dist', {index: 'index.html'}));
+  var server = https.createServer(credentials, app);
+
+  server.listen(8443, function () {
     var host = server.address().address;
     var port = server.address().port;
-
     console.log('Example app listening at http://%s:%s', host, port);
-
   });
 }
 
@@ -63,7 +70,10 @@ browserSync.use(browserSyncSpa({
 
 gulp.task('serve', ['watch'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
-  //expressInit();
+});
+
+gulp.task('serve:express', ['watch'], function () {
+  expressInit();
 });
 
 gulp.task('serve:dist', ['build'], function () {
